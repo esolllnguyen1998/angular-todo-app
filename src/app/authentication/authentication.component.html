@@ -1,0 +1,10 @@
+<div class="authentication-container">
+    <div class="authen-form text-center">
+        <h4>Verify Your Email</h4>
+        <input type="email" class="form-control" placeholder="Enter your email" [(ngModel)]="userEmail">
+        <button (click)="handleUserSubmit()" class="btn btn-outline-success" type="button">Submit</button>
+        <div class="error" *ngIf="error.length > 0">
+            {{error}}
+        </div>
+    </div>
+</div>

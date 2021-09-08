@@ -1,0 +1,53 @@
+<div class="todo-container">
+    <div class="todo-wrapper">
+        <div class="todo-header">
+            <div class="error" *ngIf="error.length > 0">
+                {{error}}
+            </div>
+            <div class="error" *ngIf="todoNote.length > 250">
+                This field allows 250 characters.
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Add ToDo..." [(ngModel)]="todoNote">
+                <button class="btn btn-outline-secondary" (click)="handleAddTodo()" type="button">Submit</button>
+            </div>
+        </div>
+        <div class="todo-body">
+            <div class="todo-item" *ngFor="let todo of todoList; index as i">
+                <div class="row">
+                    <div class="col-1">
+                        <div class="input-group-custom">
+                            <input class="form-check-input mt-0" type="checkbox" [checked]="todo.completed"
+                                [(ngModel)]="todo.completed">
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <div class="todo-note" *ngIf="todo.id !== editingTodoId">
+                            <div class="complete" *ngIf="todo.completed; else notComplete">
+                                {{todo.title}}
+                            </div>
+                            <ng-template #notComplete>
+                                {{todo.title}}
+                            </ng-template>
+                        </div>
+                        <input *ngIf="todo.id === editingTodoId" class="form-check-input edit-note" type="text"
+                            [(ngModel)]="todo.title">
+                        <div class="error" *ngIf="todo.title.length > 250">
+                            This field allows 250 characters.
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="todo-action-icon">
+                            <i *ngIf="todo.id !== editingTodoId" (click)="handleEnableEditingMode(todo.id)"
+                                class="fa fa-pencil edit"></i>
+                            <i *ngIf="todo.id === editingTodoId" (click)="handleEditTodoNote()"
+                                class="fa fa-check edit"></i>
+                            <i class="fa fa-trash delete" (click)="handleEnableDeletingMode(todo.id)"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="todo-border-bottom"></div>
+            </div>
+        </div>
+    </div>
+</div>

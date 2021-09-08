@@ -1,0 +1,25 @@
+.authentication-container {
+    background-color: white;
+    position: absolute;
+    height: 20vh;
+    width: 25%;
+    transform: translate(-50%, 20%);
+    box-shadow: -9px 11px 31px 2px rgb(0 0 0 / 75%);
+
+    .authen-form {
+        margin: 10px;
+
+        input {
+            margin-bottom: 5%;
+        }
+
+        button {
+            width: 50%;
+        }
+
+        .error {
+            color: #ff3333;
+            margin-top: 10px;
+        }
+    }
+}
